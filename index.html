@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyful Juniors | International Daycare & Preschool</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <style>
+        /* --- 1. DESIGN TOKENS (Google Material 3) --- */
+        :root {
+            --g-blue: #1a73e8;
+            --g-red: #ea4335;
+            --g-yellow: #fbbc04;
+            --g-green: #34a853;
+            --whatsapp: #25D366;
+            
+            --surface: #ffffff;
+            --background: #f0f4f8; 
+            --text-main: #202124;
+            --text-sub: #5f6368;
+            --outline: #dadce0;
+            
+            --radius-btn: 50px;
+            --radius-card: 24px;
+            --anim-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: radial-gradient(at 0% 0%, rgba(26, 115, 232, 0.03) 0px, transparent 50%), 
+                              radial-gradient(at 100% 0%, rgba(234, 67, 53, 0.03) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* --- UTILITIES --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--anim-ease); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 3%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.3rem; font-weight: 700; text-decoration: none; display: flex; gap: 4px; color: var(--text-main); align-items: center; }
+        .logo span:nth-child(1) { color: var(--g-blue); } .logo span:nth-child(2) { color: var(--g-red); } 
+        .logo span:nth-child(3) { color: var(--g-yellow); } .logo span:nth-child(4) { color: var(--g-green); }
+
+        .nav-center { display: flex; gap: 5px; }
+        .nav-link { 
+            text-decoration: none; color: var(--text-sub); font-size: 0.9rem; font-weight: 500; 
+            padding: 8px 12px; border-radius: 50px; transition: 0.2s; 
+        }
+        .nav-link:hover { background: #f1f3f4; color: var(--g-blue); }
+
+        .nav-right { display: flex; gap: 10px; align-items: center; }
+        .social-icon { font-size: 1.2rem; color: var(--text-sub); transition: 0.2s; }
+        .social-icon:hover { color: var(--g-blue); transform: scale(1.1); }
+        
+        .btn-enquiry {
+            background: var(--whatsapp); color: white; padding: 8px 20px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2); transition: 0.3s;
+        }
+        .btn-enquiry:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3); }
+
+        /* --- FLOATING WHATSAPP BUTTON --- */
+        .float-wa {
+            position: fixed; bottom: 20px; right: 20px; background: var(--whatsapp);
+            color: white; width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 2000; transition: 0.3s;
+            text-decoration: none; animation: pulse 2s infinite;
+        }
+        .float-wa:hover { transform: scale(1.1); }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+        /* --- HERO --- */
+        .hero {
+            padding: 160px 5% 100px; text-align: center; position: relative;
+            background: linear-gradient(to bottom, white 0%, var(--background) 100%);
+        }
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; color: var(--text-main); }
+        .hero h1 span { color: var(--g-blue); }
+        .hero p { font-size: 1.2rem; color: var(--text-sub); max-width: 700px; margin: 0 auto 30px; }
+        .hero-btns { display: flex; gap: 15px; justify-content: center; }
+        .btn-primary { background: var(--g-blue); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .btn-primary:hover { background: #155db5; box-shadow: 0 5px 15px rgba(26, 115, 232, 0.3); transform: translateY(-2px); }
+        
+        /* --- SECTIONS --- */
+        section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+        .section-head { text-align: center; margin-bottom: 50px; }
+        .section-head h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .section-head p { color: var(--text-sub); max-width: 600px; margin: 0 auto; }
+
+        /* --- CARDS (Universal) --- */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .clean-card {
+            background: var(--surface); border: 1px solid white; border-radius: var(--radius-card);
+            padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .clean-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: rgba(255,255,255,0.5); }
+        
+        /* --- PROGRAMS SPECIFIC --- */
+        .prog-age { background: #e8f0fe; color: var(--g-blue); display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px; }
+        .prog-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        
+        /* --- TESTIMONIALS --- */
+        .review-card { text-align: center; font-style: italic; }
+        .stars { color: var(--g-yellow); margin-bottom: 15px; }
+        
+        /* --- INSTAGRAM PREVIEW --- */
+        .insta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+        .insta-item { height: 150px; border-radius: 12px; background: #ddd; background-size: cover; cursor: pointer; transition: 0.3s; }
+        .insta-item:hover { opacity: 0.8; transform: scale(0.98); }
+
+        /* --- EDUCATORS HOVER --- */
+        .edu-img-box { height: 280px; width: 100%; overflow: hidden; border-radius: 20px; margin-bottom: 15px; }
+        .edu-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .clean-card:hover .edu-img { transform: scale(1.1); }
+
+        /* --- CONTACT FORM --- */
+        .form-box { background: white; padding: 40px; border-radius: var(--radius-card); box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-sub); }
+        .input-field { width: 100%; padding: 12px; border: 1px solid var(--outline); border-radius: 8px; font-family: 'Outfit'; font-size: 1rem; }
+        .input-field:focus { outline: none; border-color: var(--g-blue); background: #f8fbff; }
+
+        /* --- FOOTER --- */
+        footer { background: white; padding: 60px 5% 30px; margin-top: 80px; border-top: 1px solid var(--outline); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-size: 1.1rem; margin-bottom: 20px; color: var(--text-main); }
+        .footer-links a { display: block; color: var(--text-sub); text-decoration: none; margin-bottom: 10px; transition: 0.2s; }
+        .footer-links a:hover { color: var(--g-blue); padding-left: 5px; }
+        .copy-note { text-align: center; font-size: 0.9rem; color: #999; border-top: 1px solid #eee; padding-top: 30px; }
+
+        /* MOBILE FIXES */
+        @media (max-width: 1024px) {
+            .nav-center { display: none; } /* Hide menu on mobile for simplicity in this demo */
+            .hero h1 { font-size: 2.5rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="snd-hover" src="https://assets.mixkit.co/sfx/preview/mixkit-modern-technology-select-3124.mp3"></audio>
+    <audio id="snd-click" src="https://assets.mixkit.co/sfx/preview/mixkit-mouse-click-close-1113.mp3"></audio>
+
+    <a href="https://wa.me/1234567890?text=Hello,%20I’m%20interested%20in%20admissions%20at%20Joyful%20Juniors." class="float-wa sound-click" target="_blank">
+        <i class='bx bxl-whatsapp'></i>
+    </a>
+
+    <nav>
+        <a href="#" class="logo sound-click">
+            <span>Joy</span><span>ful</span>&nbsp;<span>Jun</span><span>iors</span>
+        </a>
+        <div class="nav-center">
+            <a href="#home" class="nav-link sound-hover">Home</a>
+            <a href="#about" class="nav-link sound-hover">About</a>
+            <a href="#programs" class="nav-link sound-hover">Programs</a>
+            <a href="#facilities" class="nav-link sound-hover">Facilities</a>
+            <a href="#gallery" class="nav-link sound-hover">Gallery</a>
+            <a href="#contact" class="nav-link sound-hover">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="social-icon"><i class='bx bxl-instagram'></i></a>
+            <a href="#" class="social-icon"><i class='bx bxl-facebook'></i></a>
+            <a href="https://wa.me/1234567890" target="_blank" class="btn-enquiry sound-click">
+                <i class='bx bxl-whatsapp'></i> Enquiry
+            </a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero reveal active">
+        <h1>Welcome to Joyful Juniors <br> <span>Where Happy Learning Begins</span></h1>
+        <p>Joyful Juniors is an international daycare and preschool offering a safe, loving, and inspiring environment where children grow, learn, and thrive.</p>
+        <div class="hero-btns">
+            <a href="#contact" class="btn-primary sound-click">Book a School Tour</a>
+            <a href="https://wa.me/1234567890" class="btn-enquiry sound-click" style="background: white; color: var(--whatsapp); border: 1px solid var(--whatsapp);">WhatsApp Chat</a>
+        </div>
+    </section>
+
+    <section id="why-us">
+        <div class="section-head reveal">
+            <h2>Why Joyful Juniors?</h2>
+            <p>Because Every Child Deserves a Joyful Beginning</p>
+        </div>
+        <div class="card-grid">
+            <div class="clean-card sound-hover reveal delay-1">
+                <i class='bx bx-world prog-icon' style="color:var(--g-blue)"></i>
+                <h3>International Approach</h3>
+                <p>Global early-years best practices.</p>
+            </div>
+            <div class="clean-card sound-hover reveal delay-2">
+                <i class='bx bx-heart prog-icon' style="color:var(--g-red)"></i>
+                <h3>Warm & Secure</h3>
+                <p>A loving home-away-from-home environment.</p>
+            </div>
+            <div class="clean-card sound-hover reveal delay-3">
+                <i class='bx bx-palette prog-icon' style="color:var(--g-yellow)"></i>
+                <h3>Play-Based Learning</h3>
+                <p>Hands-on activities that spark curiosity.</p>
+            </div>
+            <div class="clean-card sound-hover reveal delay-1">
+                <i class='bx bx-group prog-icon' style="color:var(--g-green)"></i>
+                <h3>Parent Partnership</h3>
+                <p>We work together for your child's growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs">
+        <div class="section-head reveal">
+            <h2>Our Programs</h2>
+            <p>Learning for Every Little Stage</p>
+        </div>
+        <div class="card-grid">
+            <div class="clean-card sound-hover reveal">
+                <span class="prog-age">6 months – 2 years</span>
+                <h3>👶 Daycare</h3>
+                <p><strong>Focus:</strong> Comfort, care & early stimulation.</p>
+                <p style="font-size:0.9rem; color:#666; margin-top:10px;">Highlights: Personalized routines, safe care, sensory play.</p>
+            </div>
+            <div class="clean-card sound-hover reveal delay-1">
+                <span class="prog-age">2 – 3 years</span>
+                <h3>🧩 Playgroup</h3>
+                <p><strong>Focus:</strong> Exploration & independence.</p>
+                <p style="font-size:0.9rem; color:#666; margin-top:10px;">Highlights: Music, movement, storytelling.</p>
+            </div>
+            <div class="clean-card sound-hover reveal delay-2">
+                <span class="prog-age">3 – 4 years</span>
+                <h3>🎨 Nursery</h3>
+                <p><strong>Focus:</strong> Communication & creativity.</p>
+                <p style="font-size:0.9rem; color:#666; margin-top:10px;">Highlights: Phonics, art, early numeracy.</p>
+            </div>
+            <div class="clean-card sound-hover reveal delay-3">
+                <span class="prog-age">4 – 6 years</span>
+                <h3>🎓 Kindergarten</h3>
+                <p><strong>Focus:</strong> School readiness.</p>
+                <p style="font-size:0.9rem; color:#666; margin-top:10px;">Highlights: Literacy, numeracy, confidence building.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="curriculum" style="background: white; border-radius: 30px; margin-top: 50px;">
+        <div class="section-head reveal">
+            <h2>Our Learning Philosophy</h2>
+            <p>Globally Inspired, Joyfully Delivered</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+            <div class="reveal">
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    At Joyful Juniors, we believe children learn best when they feel happy, safe, and confident. Our approach blends global best practices with joyful, hands-on learning.
+                </p>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 10px;"><i class='bx bx-check-circle' style="color:var(--g-green)"></i> Inquiry & Exploration</li>
+                    <li style="margin-bottom: 10px;"><i class='bx bx-check-circle' style="color:var(--g-green)"></i> Language & Communication</li>
+                    <li style="margin-bottom: 10px;"><i class='bx bx-check-circle' style="color:var(--g-green)"></i> Numeracy & Life Skills</li>
+                    <li style="margin-bottom: 10px;"><i class='bx bx-check-circle' style="color:var(--g-green)"></i> Social & Emotional Growth</li>
+                </ul>
+            </div>
+            <div class="reveal delay-1" style="height: 300px; background: #eee; border-radius: 20px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1000&auto=format&fit=crop" style="width:100%; height:100%; object-fit:cover;" alt="Learning">
+            </div>
+        </div>
+    </section>
+
+    <section id="facilities">
+        <div class="section-head reveal">
+            <h2>Facilities & Safety</h2>
+            <p>A Safe Space for Happy Learning</p>
+        </div>
+        <div class="card-grid">
+            <div class="clean-card sound-hover reveal">
+                <i class='bx bx-building-house prog-icon'></i>
+                <h4>Spacious Classrooms</h4>
+                <p>Bright, cheerful, and child-friendly interiors.</p>
+            </div>
+            <div class="clean-card sound-hover reveal delay-1">
+                <i class='bx bx-joystick prog-icon'></i>
+                <h4>Play Zones</h4>
+                <p>Safe indoor & outdoor activity areas.</p>
+            </div>
+            <div class="clean-card sound-hover reveal delay-2">
+                <i class='bx bx-cctv prog-icon'></i>
+                <h4>Safety First</h4>
+                <p>CCTV surveillance and secure entry/exit.</p>
+            </div>
+            <div class="clean-card sound-hover reveal delay-3">
+                <i class='bx bx-spray-can prog-icon'></i>
+                <h4>Hygiene</h4>
+                <p>Regular sanitization and trained staff.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="educators">
+        <div class="section-head reveal">
+            <h2>Our Educators</h2>
+            <p>Caring Teachers. Trusted Mentors.</p>
+        </div>
+        <div class="card-grid">
+            <div class="clean-card sound-hover reveal">
+                <div class="edu-img-box"><img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=500&auto=format&fit=crop" class="edu-img" alt="Teacher"></div>
+                <h3>Ms. Sarah</h3>
+                <p>Center Head | 10+ Yrs Exp</p>
+            </div>
+            <div class="clean-card sound-hover reveal delay-1">
+                <div class="edu-img-box"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=500&auto=format&fit=crop" class="edu-img" alt="Teacher"></div>
+                <h3>Ms. Ananya</h3>
+                <p>Creative Lead | Art Expert</p>
+            </div>
+            <div class="clean-card sound-hover reveal delay-2">
+                <div class="edu-img-box"><img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?q=80&w=500&auto=format&fit=crop" class="edu-img" alt="Teacher"></div>
+                <h3>Mr. David</h3>
+                <p>Wellness & Activity Coach</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="section-head reveal">
+            <h2>Moments That Make Us Smile</h2>
+        </div>
+        <div class="insta-grid">
+            <div class="insta-item reveal" style="background-image: url('https://images.unsplash.com/photo-1596464716127-f9a8759fa378?q=80&w=500')"></div>
+            <div class="insta-item reveal delay-1" style="background-image: url('https://images.unsplash.com/photo-1502086223501-681a91342795?q=80&w=500')"></div>
+            <div class="insta-item reveal delay-2" style="background-image: url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=500')"></div>
+            <div class="insta-item reveal delay-3" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=500')"></div>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="#" class="btn-primary sound-click" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border:none;">
+                <i class='bx bxl-instagram'></i> Follow on Instagram
+            </a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-head reveal">
+            <h2>Join the Family</h2>
+            <p>Admissions Open for 2026 Batch</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+            <div class="reveal">
+                <div class="clean-card" style="margin-bottom: 20px;">
+                    <h3>📍 Visit Us</h3>
+                    <p>Joyful Juniors Campus, Kannur, Kerala</p>
+                    <p>📞 +91 98765 43210</p>
+                    <p>✉️ hello@joyfuljuniors.in</p>
+                </div>
+                <div style="height: 300px; background: #eee; border-radius: 20px; overflow: hidden;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62456.92984954737!2d75.3283!3d11.8745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba422b9b2aca753%3A0x380606a19315248d!2sKannur%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+            
+            <div class="form-box reveal delay-1">
+                <h3>Enquiry Form</h3>
+                <form>
+                    <div class="input-group">
+                        <label>Parent Name</label>
+                        <input type="text" class="input-field" placeholder="Enter your name">
+                    </div>
+                    <div class="input-group">
+                        <label>Phone Number</label>
+                        <input type="tel" class="input-field" placeholder="Your contact number">
+                    </div>
+                    <div class="input-group">
+                        <label>Child's Age</label>
+                        <input type="text" class="input-field" placeholder="e.g. 3 Years">
+                    </div>
+                    <div class="input-group">
+                        <label>Message</label>
+                        <textarea class="input-field" rows="4" placeholder="How can we help?"></textarea>
+                    </div>
+                    <button type="button" class="btn-primary sound-click" style="width: 100%;">Submit Enquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="margin-bottom: 20px;">
+                    <span>Joy</span><span>ful</span>&nbsp;<span>Jun</span><span>iors</span>
+                </a>
+                <p style="color: #666; font-size: 0.95rem;">
+                    International Daycare & Preschool.<br>
+                    Where Happy Learning Begins.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="#programs">Programs</a>
+                    <a href="#admissions">Admissions</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#contact">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="footer-links">
+                    <a href="#"><i class='bx bxl-instagram'></i> Instagram</a>
+                    <a href="#"><i class='bx bxl-facebook'></i> Facebook</a>
+                    <a href="#"><i class='bx bxl-whatsapp'></i> WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="copy-note">
+            &copy; 2026 Joyful Juniors – International Daycare & Preschool. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Sound Engine
+        const hoverSound = document.getElementById('snd-hover');
+        const clickSound = document.getElementById('snd-click');
+        hoverSound.volume = 0.2; clickSound.volume = 0.3;
+
+        document.querySelectorAll('.sound-hover').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                hoverSound.currentTime = 0; hoverSound.play().catch(() => {});
+            });
+        });
+        document.querySelectorAll('.sound-click').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                clickSound.currentTime = 0; clickSound.play();
+            });
+        });
+    </script>
+</body>
+</html>
