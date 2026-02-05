@@ -75,8 +75,8 @@
         }
         .nav-link:hover { background: #f1f3f4; color: var(--g-blue); }
 
-        .nav-right { display: flex; gap: 10px; align-items: center; }
-        .social-icon { font-size: 1.2rem; color: var(--text-sub); transition: 0.2s; }
+        .nav-right { display: flex; gap: 15px; align-items: center; padding-right: 10px; }
+        .social-icon { font-size: 1.4rem; color: var(--text-sub); transition: 0.2s; display: flex; align-items: center;}
         .social-icon:hover { color: var(--g-blue); transform: scale(1.1); }
         
         .btn-enquiry {
@@ -136,10 +136,12 @@
         .insta-item { height: 150px; border-radius: 12px; background: #ddd; background-size: cover; cursor: pointer; transition: 0.3s; }
         .insta-item:hover { opacity: 0.8; transform: scale(0.98); }
 
-        /* --- EDUCATORS HOVER --- */
-        .edu-img-box { height: 280px; width: 100%; overflow: hidden; border-radius: 20px; margin-bottom: 15px; }
-        .edu-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .clean-card:hover .edu-img { transform: scale(1.1); }
+        /* --- EDUCATORS / FOUNDERS IMAGES --- */
+        /* Use an aspect ratio so the box scales with width, keep a sensible min-height */
+        .edu-img-box { aspect-ratio: 3/4; min-height: 180px; max-height: 240px; width: 100%; overflow: hidden; border-radius: 20px; margin-bottom: 15px; }
+        /* Keep image covering the box but shift the focal point slightly up so faces stay in frame */
+        .edu-img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transition: 0.5s; display: block; }
+        .clean-card:hover .edu-img { transform: scale(1.06); }
 
         /* --- CONTACT FORM --- */
         .form-box { background: white; padding: 40px; border-radius: var(--radius-card); box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
@@ -158,7 +160,7 @@
 
         /* MOBILE FIXES */
         @media (max-width: 1024px) {
-            .nav-center { display: none; } /* Hide menu on mobile for simplicity in this demo */
+            .nav-center { display: none; } 
             .hero h1 { font-size: 2.5rem; }
             .footer-grid { grid-template-columns: 1fr; }
         }
@@ -169,13 +171,13 @@
     <audio id="snd-hover" src="https://assets.mixkit.co/sfx/preview/mixkit-modern-technology-select-3124.mp3"></audio>
     <audio id="snd-click" src="https://assets.mixkit.co/sfx/preview/mixkit-mouse-click-close-1113.mp3"></audio>
 
-    <a href="https://wa.me/1234567890?text=Hello,%20I’m%20interested%20in%20admissions%20at%20Joyful%20Juniors." class="float-wa sound-click" target="_blank">
+    <a href="https://wa.me/918921598779?text=Hello,%20I’m%20interested%20in%20admissions%20at%20Joyful%20Juniors." class="float-wa sound-click" target="_blank">
         <i class='bx bxl-whatsapp'></i>
     </a>
 
     <nav>
         <a href="#" class="logo sound-click">
-            <span>Joy</span><span>ful</span>&nbsp;<span>Jun</span><span>iors</span>
+            <span>Joy</span><span>ful</span> <span>Jun</span><span>iors</span>
         </a>
         <div class="nav-center">
             <a href="#home" class="nav-link sound-hover">Home</a>
@@ -186,12 +188,9 @@
             <a href="#contact" class="nav-link sound-hover">Contact</a>
         </div>
         <div class="nav-right">
-            <a href="#" class="social-icon"><i class='bx bxl-instagram'></i></a>
-            <a href="#" class="social-icon"><i class='bx bxl-facebook'></i></a>
-            <a href="https://wa.me/1234567890" target="_blank" class="btn-enquiry sound-click">
-                <i class='bx bxl-whatsapp'></i> Enquiry
-            </a>
-        </div>
+            <a href="https://www.instagram.com/joyfuljuniors_preschooldaycare" target="_blank" class="social-icon"><i class='bx bxl-instagram'></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61566487014549" target="_blank" class="social-icon"><i class='bx bxl-facebook'></i></a>
+            </div>
     </nav>
 
     <section id="home" class="hero reveal active">
@@ -199,7 +198,7 @@
         <p>Joyful Juniors is an international daycare and preschool offering a safe, loving, and inspiring environment where children grow, learn, and thrive.</p>
         <div class="hero-btns">
             <a href="#contact" class="btn-primary sound-click">Book a School Tour</a>
-            <a href="https://wa.me/1234567890" class="btn-enquiry sound-click" style="background: white; color: var(--whatsapp); border: 1px solid var(--whatsapp);">WhatsApp Chat</a>
+            <a href="https://wa.me/918921598779" target="_blank" class="btn-enquiry sound-click" style="background: white; color: var(--whatsapp); border: 1px solid var(--whatsapp);">WhatsApp Chat</a>
         </div>
     </section>
 
@@ -319,26 +318,26 @@
 
     <section id="educators">
         <div class="section-head reveal">
-            <h2>Our Educators</h2>
+            <h2>Our Founders</h2>
             <p>Caring Teachers. Trusted Mentors.</p>
         </div>
-        <div class="card-grid">
-            <div class="clean-card sound-hover reveal">
-                <div class="edu-img-box"><img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=500&auto=format&fit=crop" class="edu-img" alt="Teacher"></div>
-                <h3>Ms. Sarah</h3>
-                <p>Center Head | 10+ Yrs Exp</p>
-            </div>
-            <div class="clean-card sound-hover reveal delay-1">
-                <div class="edu-img-box"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=500&auto=format&fit=crop" class="edu-img" alt="Teacher"></div>
-                <h3>Ms. Ananya</h3>
-                <p>Creative Lead | Art Expert</p>
-            </div>
-            <div class="clean-card sound-hover reveal delay-2">
-                <div class="edu-img-box"><img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?q=80&w=500&auto=format&fit=crop" class="edu-img" alt="Teacher"></div>
-                <h3>Mr. David</h3>
-                <p>Wellness & Activity Coach</p>
-            </div>
+       <div class="card-grid">
+    <div class="clean-card sound-hover reveal">
+        <div class="edu-img-box">
+            <img src="https://raw.githubusercontent.com/sagarrameshan/joyful-website/main/founder1.jpeg" class="edu-img" alt="Ms. Radhika Vinod">
         </div>
+        <h3>Ms. Radhika Vinod</h3>
+        <p>Center Head | 10+ Yrs Exp</p>
+    </div>
+    <div class="clean-card sound-hover reveal delay-1">
+        <div class="edu-img-box">
+            <img src="https://raw.githubusercontent.com/sagarrameshan/joyful-website/main/founder2.jpeg" class="edu-img" alt="Ms. Sindhu Divakaran">
+        </div>
+        <h3>Ms. Sindhu Divakaran</h3>
+        <p>Creative Lead | 07+ Yrs Exp</p>
+    </div>
+</div>
+</div>
     </section>
 
     <section id="gallery">
@@ -346,13 +345,17 @@
             <h2>Moments That Make Us Smile</h2>
         </div>
         <div class="insta-grid">
-            <div class="insta-item reveal" style="background-image: url('https://images.unsplash.com/photo-1596464716127-f9a8759fa378?q=80&w=500')"></div>
-            <div class="insta-item reveal delay-1" style="background-image: url('https://images.unsplash.com/photo-1502086223501-681a91342795?q=80&w=500')"></div>
-            <div class="insta-item reveal delay-2" style="background-image: url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=500')"></div>
-            <div class="insta-item reveal delay-3" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=500')"></div>
+            <div class="insta-item reveal" style="background-image: url('https://github.com/sagarrameshan/joyful-website/blob/main/kids1.jpeg?raw=true')"></div>
+            <div class="insta-item reveal delay-1" style="background-image: url('https://github.com/sagarrameshan/joyful-website/blob/main/kids2.jpeg?raw=true')"></div>
+            <div class="insta-item reveal delay-2" style="background-image: url('https://github.com/sagarrameshan/joyful-website/blob/main/kids3.jpeg?raw=true')"></div>
+            <div class="insta-item reveal delay-3" style="background-image: url('https://github.com/sagarrameshan/joyful-website/blob/main/kids4.jpeg?raw=true')"></div>
+            <div class="insta-item reveal delay-3" style="background-image: url('https://github.com/sagarrameshan/joyful-website/blob/main/kids5.jpeg?raw=true')"></div>
+            <div class="insta-item reveal delay-3" style="background-image: url('https://github.com/sagarrameshan/joyful-website/blob/main/kids6.jpeg?raw=true')"></div>
+
+
         </div>
         <div style="text-align: center; margin-top: 30px;">
-            <a href="#" class="btn-primary sound-click" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border:none;">
+            <a href="https://www.instagram.com/joyfuljuniors_preschooldaycare" target="_blank" class="btn-primary sound-click" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border:none;">
                 <i class='bx bxl-instagram'></i> Follow on Instagram
             </a>
         </div>
@@ -367,35 +370,38 @@
             <div class="reveal">
                 <div class="clean-card" style="margin-bottom: 20px;">
                     <h3>📍 Visit Us</h3>
-                    <p>Joyful Juniors Campus, Kannur, Kerala</p>
-                    <p>📞 +91 98765 43210</p>
-                    <p>✉️ hello@joyfuljuniors.in</p>
+                    <p>Joyful Juniors, Thavakkara, Kannur, Kerala</p>
+                    <p>📞 +91 89215 98779</p>
+                    <p>✉️ info.joyfuljuniors@gmail.com</p>
                 </div>
-                <div style="height: 300px; background: #eee; border-radius: 20px; overflow: hidden;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62456.92984954737!2d75.3283!3d11.8745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba422b9b2aca753%3A0x380606a19315248d!2sKannur%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <div style="height: 450px; background: #eee; border-radius: 20px; overflow: hidden;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3904.47727497881!2d75.37105477552059!3d11.871817788351555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba423b289534c5b%3A0xe58f3d647750b8cb!2sJoyful%20Juniors%20International%20Preschool%20and%20Daycare!5e0!3m2!1sen!2sin!4v1770281375599!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
             
             <div class="form-box reveal delay-1">
                 <h3>Enquiry Form</h3>
-                <form>
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                    <input type="hidden" name="subject" value="New Admission Enquiry - Joyful Juniors">
+                    
                     <div class="input-group">
                         <label>Parent Name</label>
-                        <input type="text" class="input-field" placeholder="Enter your name">
+                        <input type="text" name="name" class="input-field" placeholder="Enter your name" required>
                     </div>
                     <div class="input-group">
                         <label>Phone Number</label>
-                        <input type="tel" class="input-field" placeholder="Your contact number">
+                        <input type="tel" name="phone" class="input-field" placeholder="Your contact number" required>
                     </div>
                     <div class="input-group">
                         <label>Child's Age</label>
-                        <input type="text" class="input-field" placeholder="e.g. 3 Years">
+                        <input type="text" name="age" class="input-field" placeholder="e.g. 3 Years">
                     </div>
                     <div class="input-group">
                         <label>Message</label>
-                        <textarea class="input-field" rows="4" placeholder="How can we help?"></textarea>
+                        <textarea name="message" class="input-field" rows="4" placeholder="How can we help?"></textarea>
                     </div>
-                    <button type="button" class="btn-primary sound-click" style="width: 100%;">Submit Enquiry</button>
+                    <button type="submit" class="btn-primary sound-click" style="width: 100%;">Submit Enquiry</button>
                 </form>
             </div>
         </div>
@@ -405,7 +411,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <a href="#" class="logo" style="margin-bottom: 20px;">
-                    <span>Joy</span><span>ful</span>&nbsp;<span>Jun</span><span>iors</span>
+                    <span>Joy</span><span>ful</span> <span>Jun</span><span>iors</span>
                 </a>
                 <p style="color: #666; font-size: 0.95rem;">
                     International Daycare & Preschool.<br>
@@ -424,14 +430,14 @@
             <div class="footer-col">
                 <h4>Connect</h4>
                 <div class="footer-links">
-                    <a href="#"><i class='bx bxl-instagram'></i> Instagram</a>
-                    <a href="#"><i class='bx bxl-facebook'></i> Facebook</a>
-                    <a href="#"><i class='bx bxl-whatsapp'></i> WhatsApp</a>
+                    <a href="https://www.instagram.com/joyfuljuniors_preschooldaycare" target="_blank"><i class='bx bxl-instagram'></i> Instagram</a>
+                    <a href="https://www.facebook.com/profile.php?id=61566487014549" target="_blank"><i class='bx bxl-facebook'></i> Facebook</a>
+                    <a href="https://wa.me/918921598779" target="_blank"><i class='bx bxl-whatsapp'></i> WhatsApp</a>
                 </div>
             </div>
         </div>
         <div class="copy-note">
-            &copy; 2026 Joyful Juniors – International Daycare & Preschool. All rights reserved.
+            © 2026 Joyful Juniors – International Daycare & Preschool. All rights reserved.
         </div>
     </footer>
 
